@@ -1,0 +1,110 @@
+
+<!doctype html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#4F7DC9">
+  <meta charset="UTF-8">
+  <title>Protección de la BIOS/UEFI</title>
+  <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Code+Pro:400|Roboto:400,300,400italic,500,700|Roboto+Mono">
+  <link rel="stylesheet" href="//fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://storage.googleapis.com/claat-public/codelab-elements.css">
+  <style>
+    .success {
+      color: #1e8e3e;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <google-codelab-analytics gaid="UA-49880327-14"></google-codelab-analytics>
+  <google-codelab codelab-gaid=""
+                  id="alvarobueno21"
+                  title="Protección de la BIOS/UEFI"
+                  environment="web"
+                  feedback-link="">
+    
+      <google-codelab-step label="Contraseña de administración de la BIOS" duration="3">
+        <p>Para activar la siguiente opción nos iremos a la opción de seguridad y luego a Contraseña de administrador, nos pedirá que introduzcamos una nueva contraseña, y una vez activada podemos pedir que nos la pida al entrar al sistema operativo o a la BIOS.</p>
+<p class="image-container"><img src="img\\306d49797574f51f.jpeg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contraseña de usuario de la BIOS" duration="3">
+        <p>Para activar esta opción tenemos que irnos al mismo apartado de seguridad que para la contraseña de administrador, y ahí podemos activarla, eso si tendremos privilegios para cambiar solo los parámetros básicos de la BIOS y no los avanzados, para eso está el administrador.</p>
+<p class="image-container"><img src="img\\6083b42719c74a5f.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Contraseña de arranque del dispositivo" duration="3">
+        <p>Para acceder a esta opción tendremos que irnos al apartado de seguridad y luego nos iremos a Password Check, aquí podremos poner que nos pida la contraseña al inicio del setup de la BIOS o al Boot que nos la pediría en el arranque del sistema operativo.</p>
+<p class="image-container"><img src="img\\e66ec60926c05253.jpeg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Permiso para el arranque desde dispositivos USB" duration="4">
+        <p>Es una protección que tienen algunas BIOS para que cuando esté habilitada esa opción no se puede arrancar el ordenador desde unidades extraíbles, en mi caso mi ordenador no tiene esta opción ya que es una BIOS más antiguo, pero estas son las opciones que ofrece Si está deshabilitado, no se podrá arrancar el ordenador desde unidades extraíbles la configuración avanzada de USB:</p>
+<p>Para mi BIOS estos serían los pasos a seguir:</p>
+<ul>
+<li>Entramos en ajustes avanzados y en configuración de USB solo podemos activar o desactivar un par de opciones que son el XHCI Hand-Off que sirve para cuando habilitamos la opción los puertos USB 3.0 cambiarán su funcionamiento y se transformarán en puertos USB 2.0.</li>
+<li>Y la segunda opción que tenemos es Legacy USB Support que de por sí el protocolo USB tiene limitaciones a bajo nivel por lo tanto sin la activación de esta característica, los ratones que se conecten a esta ranura no funcionarán en UEFI y lo mismo ocurre con los teclados USB.</li>
+</ul>
+<p class="image-container"><img src="img\\770e8296d6d47be7.png"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Orden de arranque" duration="2">
+        <p>En el siguiente apartado podemos cambiar el orden en el que el sistema arrancará y con que medio lo hará, podemos seleccionar CD/DVD, discos duros, USBs ... Según el orden de prioridad que pongamos en nuestra BIOS tomará como prioridad 1 el disco duro o el USB o el dispositivo que queramos, si no arranca con el primero pasará al segundo dispositivo, así hasta que encuentre un medio con el que poder arrancar el sistema operativo.</p>
+<p class="image-container"><img src="img\\bb6c74b01c275c06.jpeg"></p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Secure Boot" duration="4">
+        <p>Para acceder a esta configuración lo primero que haremos será entrar en ajustes avanzados, luego nos iremos a Advanced\Windows OS Configuration y dentro de esta opción podremos elegir el habilitar el Secure Boot o deshabilitarlo, si lo tenemos activado denegará la ejecución de software no firmado y prohibirá la ejecución de todo lo que no sea Windows.</p>
+<p class="image-container"><img src="img\\340a2b3e0ae5e797.png"></p>
+<p>¿Lograríamos un arranque totalmente seguro configurando cada una de estas opciones?</p>
+<p>Si, lo lograríamos ya que son las opciones de seguridad más avanzadas que podemos incluir en nuestra BIOS y evitar que no accedan remotamente a nuestro sistema o que alguien físicamente pueda acceder sin autorización, aunque nunca tenemos la protección 100% segura, ya que si manipulan nuestra BIOS y le hacen un reset ya sea quitándole la pila o haciendo un cortocircuito en los pines podrían acceder a la configuración de la BIOS y podrían acceder a nuestro sistema fácilmente.</p>
+
+
+      </google-codelab-step>
+    
+      <google-codelab-step label="Arranque seguro en Windows" duration="5">
+        <p>Para el proceso de recuperación de la contraseña de mi sistema intenté entrar accediendo con una memoria USB que tenía las herramientas de Windows para instalar un nuevo Windows o repararlo.</p>
+<p>Lo primero que hice fui irme a la BIOS y cambiar el arranque del ordenador para que arrancara por USB y no por el disco duro:</p>
+<p class="image-container"><img src="img\\a98dd83bd9dbfcce.png"></p>
+<p>Luego reinicié el ordenador y me fui a la pantalla de Windows que sale de instalación y en la esquina inferior izquierda aparece una opción para las herramientas de recuperación, le damos click ahí y luego nos metemos en la siguiente ventana que nos aparece seleccionaremos Solucionar problemas y nos aparecerá la siguiente pantalla:</p>
+<p class="image-container"><img src="img\\adc05d7ad8d876fe.jpeg"></p>
+<p>Aquí seleccionamos la opción Símbolo del sistema y metemos los siguientes comandos:</p>
+<p class="image-container"><img src="img\\3142e4ede87c927c.png"></p>
+<p>Cuando metamos el ultimo comando de shutdown se reiniciará la máquina y en el inicio de nuestro Windows pulsando Windows + u o en la parte de accesibilidad nos debería dejar entrar al cmd para terminar el proceso con los últimos comandos que serían los siguientes:</p>
+<p class="image-container"><img src="img\\79b2074e1f745120.png"></p>
+<ul>
+<li>¿Has podido hacerlo? ¿Crees que hubiese podido hacerlo alguien de tu entorno sin autorización?</li>
+</ul>
+<p>Desafortunadamente a mi no me dejo entrar en la terminal por tanto no pude lograrlo y creo que alguien de mi entorno sin autorización tampoco hubiera podido hacerlo y menos si tienes puesto contraseña de seguridad en el arranque o al entrar a la BIOS.</p>
+<ul>
+<li>¿Es posible deshabilitar el proceso de recuperación de contraseña en Windows para una mayor seguridad?</li>
+</ul>
+<p>Si es posible, lo primero que tendríamos que hacer sería acceder como administrador y en el editor de directivas local irnos al apartado de configuración de seguridad de la cuenta y luego a Directivas de contraseña, ahí podemos deshabilitar las opciones de recuperación de contraseña y luego guardaremos los cambios y reiniciaremos el ordenador.</p>
+
+
+      </google-codelab-step>
+    
+  </google-codelab>
+
+  <script src="https://storage.googleapis.com/claat-public/native-shim.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/custom-elements.min.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/prettify.js"></script>
+  <script src="https://storage.googleapis.com/claat-public/codelab-elements.js"></script>
+  <script src="//support.google.com/inapp/api.js"></script>
+
+</body>
+</html>
